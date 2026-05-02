@@ -1,0 +1,16 @@
+Package: ravenplot
+Title: Custom ggplot2 Themes 
+Version: 0.0.0.9000
+Authors@R: 
+    person("Diana", "Tereshchenko", , "diana.tereshchenko.d@gmail.com", role = c("aut", "cre"))
+Description: ggplot2 extension package with custtomizable themes, palettes, typography, and decorative plotting.
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+Imports: 
+    ggplot2,
+    grid,
+    showtext,
+    sysfonts
+Config/roxygen2/version: 8.0.0
