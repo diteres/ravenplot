@@ -3,23 +3,27 @@ theme_raven <- function(
     background_type = "vintage",
     font_theme = "fancy",
     color_theme = "vampire",
-    grid = TRUE
+    major_grid = TRUE,
+    minor_grid = TRUE
 ) {
 
   bg <- get_raven_background(background_type)
-
   fonts <- get_raven_fonts(font_theme)
-
   colors <- get_raven_palette(color_theme)
 
-  major_grid <- if (grid) {
+  major_grid1 <- if (major_grid) {
+    ggplot2::element_line(color = bg$grid)
+  } else {
+    ggplot2::element_blank()
+  }
+
+  minor_grid1 <- if (minor_grid) {
     ggplot2::element_line(color = bg$grid)
   } else {
     ggplot2::element_blank()
   }
 
   ggplot2::theme_minimal() +
-
     ggplot2::theme(
 
       plot.background = ggplot2::element_rect(
@@ -32,9 +36,9 @@ theme_raven <- function(
         color = NA
       ),
 
-      panel.grid.major = major_grid,
+      panel.grid.major = major_grid1,
 
-      panel.grid.minor = ggplot2::element_blank(),
+      panel.grid.minor = minor_grid1,
 
       plot.title = ggplot2::element_text(
         family = fonts$title,
@@ -67,6 +71,7 @@ theme_raven <- function(
 
       legend.text = ggplot2::element_text(
         family = fonts$labels,
+        size = 20,
         color = colors[2]
       )
     )
