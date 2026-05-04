@@ -19,8 +19,8 @@ ggplot(mtcars, aes(wt, mpg, color = factor(cyl))) +
     background_type = "vintage",
     font_theme = "fancy",
     color_theme = "vampire"
-  )
-
+  ) +
+theme(legend.position = "none" )
 
 # =========================
 # 2. BAR PLOT

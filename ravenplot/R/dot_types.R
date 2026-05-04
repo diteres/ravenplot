@@ -36,10 +36,24 @@ geom_raven_point <- function(dot_type = "standard", size = 4, ...) {
 
   symbol <- get_raven_symbol(dot_type)
 
-  ggplot2::geom_text(
+  layer <- ggplot2::geom_text(
     mapping = ggplot2::aes(label = symbol),
     size = size * 1.5,
     family = "serif",
+    key_glyph = ggplot2::draw_key_text,
     ...
   )
+
+  # Attach legend override automatically
+  legend <- ggplot2::guides(
+    color = ggplot2::guide_legend(
+      override.aes = list(
+        label = symbol,
+        family = "serif",
+        size = size * 1.5
+      )
+    )
+  )
+
+  list(layer, legend)
 }

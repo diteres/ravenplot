@@ -15,6 +15,7 @@ load_raven_fonts()
 Scatter plot
 
 ``` {r}
+
 ggplot(mtcars, aes(wt, mpg, color = factor(cyl))) +
   geom_raven_point(dot_type = "heart", size = 5) +
   scale_color_manual(values = get_raven_palette("vampire")) +
@@ -29,6 +30,7 @@ ggplot(mtcars, aes(wt, mpg, color = factor(cyl))) +
     font_theme = "fancy",
     color_theme = "vampire"
   ) 
+
 ```
 
 Bar plot

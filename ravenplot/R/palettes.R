@@ -27,7 +27,7 @@ get_raven_palette <- function(color_theme = "vampire") {
       "#C2185B",
       "#C94F63",
       "#E0637A",
-      "#F28CA3",
+      "#F28CA3"
     ),
 
     chocolate = c(
@@ -55,7 +55,7 @@ get_raven_palette <- function(color_theme = "vampire") {
       "#C2956D",
       "#D8B08A",
       "#EAD3B5",
-      "#F5E6D3",
+      "#F5E6D3"
     ),
 
     witchy = c(
@@ -95,7 +95,7 @@ get_raven_palette <- function(color_theme = "vampire") {
       "#4E6B5A",
       "#6F8F76",
       "#89A67F",
-      "#A5C1A9",
+      "#A5C1A9"
     ),
 
     lotus = c(
@@ -121,7 +121,7 @@ get_raven_palette <- function(color_theme = "vampire") {
       "#DEC59E",
       "#E8D8B5",
       "#F2E6C8",
-      "#FAF1DE",
+      "#FAF1DE"
     ),
 
     tealish = c(
@@ -132,7 +132,7 @@ get_raven_palette <- function(color_theme = "vampire") {
       "#5AA371",
       "#0F3F3A",
       "#2C8C80",
-      "#7FD4C3",
+      "#7FD4C3"
     ),
 
     tealish_heatmap = c(
@@ -147,7 +147,7 @@ get_raven_palette <- function(color_theme = "vampire") {
       "#7FD4C3",
       "#A8E6DA",
       "#CFF4EC",
-      "#E8FBF7",
+      "#E8FBF7"
     )
   )
 
