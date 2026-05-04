@@ -1,13 +1,14 @@
-get_raven_shape <- function(dot_type = "standard") {
+get_raven_symbol <- function(dot_type = "flower") {
 
-  shapes <- list(
-
-    standard = 16,
-
-    rose = 18,
-
-    witch = 17
+  symbols <- list(
+    flower = "✾",
+    cross = "✝",
+    rhombus = "◊",
+    sun = "☼",
+    swords = "⚔",
+    atom = "⚛",
+    star = "⟡",
+    heart = "♥"
   )
-
-  shapes[[dot_type]]
+  symbols[[dot_type]]
 }

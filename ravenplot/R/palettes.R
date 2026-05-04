@@ -3,31 +3,27 @@ get_raven_palette <- function(color_theme = "vampire") {
   palettes <- list(
 
     vampire = c(
-      "#531117",
-      "#353535",
-      "#ACACAC",
-      "#9C2535",
-      "#1A1A1D",
-      "#6E0F1F",
-      "#C7B8A3",
-      "#4B5563",
-      "#7D5A50"
+      "#14070A",
+      "#7B1E2B",
+      "#B22234",
+      "#3B1020",
+      "#9C1C46",
+      "#C2185B",
+      "#7F1734",
+      "#6B6F7A",
+      "#C94F63",
+      "#2F3742"
     ),
 
     chocolate = c(
       "#3A2F24",
-      "#7A6A55",
-      "#BDAA86",
       "#8B3E2F",
-      "#D8C7A1",
       "#5C4635",
       "#A67B5B",
-      "#E8DCC8",
       "#6B2E26",
       "#C2956D",
       "#4A3B31",
       "#9F8570",
-      "#F2E6D0",
       "#704F3A",
       "#B55239"
     ),
@@ -37,7 +33,6 @@ get_raven_palette <- function(color_theme = "vampire") {
       "#722548",
       "#775E88",
       "#9882B9",
-      "#1E2A24",
       "#2F4F3E",
       "#4E6B5A",
       "#6F8F76",
@@ -46,12 +41,27 @@ get_raven_palette <- function(color_theme = "vampire") {
       "#3D2A4A",
       "#5C3B63",
       "#B9A7D6",
-      "#D8CFF0",
       "#0F0B14",
       "#16101F",
       "#243328",
       "#3B5A47",
       "#89A67F"
+    ),
+
+    lotus = c(
+      "#202808",
+      "#33432B",
+      "#6A784D",
+      "#DEC59E",
+      "#C4866D"
+    ),
+
+    tealish = c(
+      "#1E201F",
+      "#193A31",
+      "#1D6C61",
+      "#3EB9A8",
+      "#5AA371"
     )
   )
 

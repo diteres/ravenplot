@@ -2,6 +2,7 @@ library(ggplot2)
 library(ravenplot)
 
 # 1. Scatter plot
+
 ggplot(mtcars, aes(wt, mpg, color = factor(cyl))) +
   geom_point(size = 4) +
   scale_color_manual(values = get_raven_palette("vampire")) +
@@ -24,7 +25,7 @@ ggplot(mtcars, aes(wt, mpg, color = factor(cyl))) +
 # 2. Bar plot
 ggplot(mpg, aes(class, fill = class)) +
   geom_bar() +
-  scale_fill_manual(values = get_raven_palette("gothic_witch")) +
+  scale_fill_manual(values = get_raven_palette("vampire")) +
   labs(
     title = "Raven Bar Plot",
     subtitle = "Dark + Gothic Witch + Elegant",
@@ -34,7 +35,7 @@ ggplot(mpg, aes(class, fill = class)) +
   theme_raven(
     background_type = "dark",
     font_theme = "elegant",
-    color_theme = "gothic_witch",
+    color_theme = "vampire",
     major_grid = FALSE,
     minor_grid = FALSE
   ) +
