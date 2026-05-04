@@ -1,11 +1,20 @@
+---
+title: "ravenplot_examples"
+author: "Diana Tereshchenko"
+date: "2026-05-04"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
 library(ravenplot)
-
 load_raven_fonts()
+```
 
-# =========================
-# 1. SCATTER (baseline)
-# =========================
+Scatter plot
+
+``` {r}
 ggplot(mtcars, aes(wt, mpg, color = factor(cyl))) +
   geom_raven_point(dot_type = "heart", size = 5) +
   scale_color_manual(values = get_raven_palette("vampire")) +
@@ -19,12 +28,12 @@ ggplot(mtcars, aes(wt, mpg, color = factor(cyl))) +
     background_type = "vintage",
     font_theme = "fancy",
     color_theme = "vampire"
-  )
+  ) 
+```
 
+Bar plot
 
-# =========================
-# 2. BAR PLOT
-# =========================
+```{r}
 ggplot(mpg, aes(class, fill = class)) +
   geom_bar() +
   scale_fill_manual(values = get_raven_palette("vampire")) +
@@ -41,11 +50,11 @@ ggplot(mpg, aes(class, fill = class)) +
     major_grid = FALSE
   ) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
 
+Line plot 
 
-# =========================
-# 3. LINE PLOT
-# =========================
+``` {r}
 economics_small <- economics[1:100, ]
 
 ggplot(economics_small, aes(date, unemploy)) +
@@ -64,11 +73,11 @@ ggplot(economics_small, aes(date, unemploy)) +
     font_theme = "simple",
     color_theme = "chocolate"
   )
+```
 
+Boxplot
 
-# =========================
-# 4. BOXPLOT
-# =========================
+```{r}
 ggplot(mpg, aes(class, hwy, fill = class)) +
   geom_boxplot() +
   scale_fill_manual(values = get_raven_palette("witch")) +
@@ -85,11 +94,11 @@ ggplot(mpg, aes(class, hwy, fill = class)) +
   ) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   geom_boxplot(color = "#14070A")
+```
 
+Dot plot (staked)
 
-# =========================
-# 5. DOT PLOT (stacked)
-# =========================
+``` {r}
 ggplot(mpg, aes(x = class, y = hwy, fill = class)) +
   geom_dotplot(
     binaxis = "y",
@@ -109,10 +118,10 @@ ggplot(mpg, aes(x = class, y = hwy, fill = class)) +
     color_theme = "gothic_witch"
   ) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
 
-# =========================
-# 6. HEATMAP
-# =========================
+Heatmap
+``` {r}
 corr <- cor(mtcars)
 
 corr_df <- as.data.frame(as.table(corr))
@@ -133,11 +142,10 @@ ggplot(corr_df, aes(Var1, Var2, fill = Freq)) +
     major_grid = FALSE
   ) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
 
-
-# =========================
-# 7. HISTOGRAM
-# =========================
+Histogram
+``` {r}
 ggplot(diamonds, aes(carat, fill = cut)) +
   geom_histogram(bins = 30, alpha = 0.8) +
   scale_fill_manual(values = get_raven_palette("witch")) +
@@ -152,11 +160,11 @@ ggplot(diamonds, aes(carat, fill = cut)) +
     font_theme = "elegant",
     color_theme = "witch"
   )
+```
 
+Faceted scatter
 
-# =========================
-# 8. FACETED SCATTER
-# =========================
+``` {r}
 ggplot(mpg, aes(displ, hwy, color = class)) +
   geom_raven_point(dot_type = "triangle", size = 4) +
   scale_color_manual(values = get_raven_palette("lotus")) +
@@ -172,3 +180,4 @@ ggplot(mpg, aes(displ, hwy, color = class)) +
     font_theme = "simple",
     color_theme = "lotus"
   )
+```

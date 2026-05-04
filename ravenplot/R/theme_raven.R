@@ -42,14 +42,14 @@ theme_raven <- function(
 
       plot.title = ggplot2::element_text(
         family = fonts$title,
-        size = 24,
+        size = 30,
         face = "bold",
         color = colors[1]
       ),
 
       plot.subtitle = ggplot2::element_text(
         family = fonts$subtitle,
-        size = 14,
+        size = 20,
         color = colors[2]
       ),
 
@@ -61,17 +61,19 @@ theme_raven <- function(
 
       axis.text = ggplot2::element_text(
         family = fonts$labels,
-        color = colors[2]
+        color = colors[2],
+        size = 15
       ),
 
       legend.title = ggplot2::element_text(
         family = fonts$axis,
-        color = colors[1]
+        color = colors[1],
+        size = 20
       ),
 
       legend.text = ggplot2::element_text(
         family = fonts$labels,
-        size = 20,
+        size = 15,
         color = colors[2]
       )
     )
