@@ -1,174 +1,37 @@
-library(ggplot2)
-library(ravenplot)
-
-load_raven_fonts()
-
-# =========================
-# 1. SCATTER (baseline)
-# =========================
-ggplot(mtcars, aes(wt, mpg, color = factor(cyl))) +
-  geom_raven_point(dot_type = "heart", size = 5) +
+p1 <- ggplot(mtcars, aes(wt, mpg, color = factor(cyl))) +
+  geom_raven_point(dot_type = "heart", size = 4) +
   scale_color_manual(values = get_raven_palette("vampire")) +
-  labs(
-    title = "Scatter Plot",
-    subtitle = "Raven points with vampire palette",
-    x = "Weight",
-    y = "MPG"
-  ) +
-  theme_raven(
-    background_type = "vintage",
-    font_theme = "fancy",
-    color_theme = "vampire"
-  ) +
-theme(legend.position = "none" )
+  theme_raven(font_theme = "fancy") +
+  theme(legend.position = "none")
+  labs(title = "Fancy")
 
-# =========================
-# 2. BAR PLOT
-# =========================
-ggplot(mpg, aes(class, fill = class)) +
-  geom_bar() +
-  scale_fill_manual(values = get_raven_palette("vampire")) +
-  labs(
-    title = "Bar Plot",
-    subtitle = "Vehicle classes",
-    x = "Class",
-    y = "Count"
-  ) +
-  theme_raven(
-    background_type = "vintage",
-    font_theme = "elegant",
-    color_theme = "vampire",
-    major_grid = FALSE
-  ) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+p2 <- p1 + theme_raven(font_theme = "elegant") + labs(title = "Elegant")
+p3 <- p1 + theme_raven(font_theme = "simple") + labs(title = "Simple")
+p4 <- p1 + theme_raven(font_theme = "standard") + labs(title = "Standard")
+
+library(patchwork)
+(p1 | p2) / (p3 | p4)
 
 
-# =========================
-# 3. LINE PLOT
-# =========================
-economics_small <- economics[1:100, ]
+plot_palette <- function(palette_name) {
 
-ggplot(economics_small, aes(date, unemploy)) +
-  geom_line(
-    linewidth = 1.5,
-    color = get_raven_palette("chocolate")[3]
-  ) +
-  labs(
-    title = "Line Plot",
-    subtitle = "Unemployment over time",
-    x = "Date",
-    y = "Unemployed"
-  ) +
-  theme_raven(
-    background_type = "transparent",
-    font_theme = "simple",
-    color_theme = "chocolate"
+  colors <- get_raven_palette(palette_name)
+
+  df <- data.frame(
+    x = seq_along(colors),
+    y = 1,
+    col = colors
   )
 
-
-# =========================
-# 4. BOXPLOT
-# =========================
-ggplot(mpg, aes(class, hwy, fill = class)) +
-  geom_boxplot() +
-  scale_fill_manual(values = get_raven_palette("witch")) +
-  labs(
-    title = "Boxplot",
-    subtitle = "Highway MPG distribution",
-    x = "Class",
-    y = "MPG"
-  ) +
-  theme_raven(
-    background_type = "transparent",
-    font_theme = "elegant",
-    color_theme = "witch"
-  ) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  geom_boxplot(color = "#14070A")
-
-
-# =========================
-# 5. DOT PLOT (stacked)
-# =========================
-ggplot(mpg, aes(x = class, y = hwy, fill = class)) +
-  geom_dotplot(
-    binaxis = "y",
-    stackdir = "center",
-    dotsize = 0.6
-  ) +
-  scale_fill_manual(values = get_raven_palette("witch")) +
-  labs(
-    title = "Dot Plot",
-    subtitle = "Highway MPG distribution by class",
-    x = "Class",
-    y = "Highway MPG"
-  ) +
-  theme_raven(
-    background_type = "vintage",
-    font_theme = "simple",
-    color_theme = "gothic_witch"
-  ) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
-
-# =========================
-# 6. HEATMAP
-# =========================
-corr <- cor(mtcars)
-
-corr_df <- as.data.frame(as.table(corr))
-
-ggplot(corr_df, aes(Var1, Var2, fill = Freq)) +
-  geom_tile() +
-  scale_fill_gradientn(colors = get_raven_palette("vampire")) +
-  labs(
-    title = "Heatmap",
-    subtitle = "Correlation matrix",
-    x = "",
-    y = ""
-  ) +
-  theme_raven(
-    background_type = "dark",
-    font_theme = "fancy",
-    color_theme = "vampire",
-    major_grid = FALSE
-  ) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
-
-
-# =========================
-# 7. HISTOGRAM
-# =========================
-ggplot(diamonds, aes(carat, fill = cut)) +
-  geom_histogram(bins = 30, alpha = 0.8) +
-  scale_fill_manual(values = get_raven_palette("witch")) +
-  labs(
-    title = "Histogram",
-    subtitle = "Diamond sizes",
-    x = "Carat",
-    y = "Count"
-  ) +
-  theme_raven(
-    background_type = "dark",
-    font_theme = "elegant",
-    color_theme = "witch"
-  )
-
-
-# =========================
-# 8. FACETED SCATTER
-# =========================
-ggplot(mpg, aes(displ, hwy, color = class)) +
-  geom_raven_point(dot_type = "triangle", size = 4) +
-  scale_color_manual(values = get_raven_palette("lotus")) +
-  facet_wrap(~class) +
-  labs(
-    title = "Faceted Scatter",
-    subtitle = "Engine displacement vs MPG",
-    x = "Displacement",
-    y = "MPG"
-  ) +
-  theme_raven(
-    background_type = "vintage",
-    font_theme = "simple",
-    color_theme = "lotus"
-  )
+  ggplot(df, aes(x, y, fill = col)) +
+    geom_tile() +
+    scale_fill_identity() +
+    labs(
+      title = paste("Palette:", palette_name)
+    ) +
+    theme_void() +
+    theme(
+      plot.title = element_text(hjust = 0.5)
+    )
+}
+plot_palette("vampire")/ plot_palette("chocolate")/plot_palette("lotus")/plot_palette("tealish")

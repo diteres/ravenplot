@@ -8,14 +8,71 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
+library(patchwork)
 library(ravenplot)
 load_raven_fonts()
 ```
 
-Scatter plot
+# Introduction 
+
+The `ravenplot` package extends ggplot2 by providing:
+
+- 10 color palettes: "vampire", "vampire_heatmap", "chocolate", "chocolate_heatmap", "witchy", "witchy_heatmap", "lotus", "lotus_heatmap", "tealish", "tealish_heatmap" 
+
+``` {r, echo=FALSE}
+plot_palette <- function(palette_name) {
+
+  colors <- get_raven_palette(palette_name)
+
+  df <- data.frame(
+    x = seq_along(colors),
+    y = 1,
+    col = colors
+  )
+
+  ggplot(df, aes(x, y, fill = col)) +
+    geom_tile() +
+    scale_fill_identity() +
+    labs(
+      title = paste("Palette:", palette_name)
+    ) +
+    theme_void() +
+    theme(
+      plot.title = element_text(hjust = 0.5)
+    )
+}
+
+p1_1 <- plot_palette("vampire")
+p1_2 <- plot_palette("vampire_heatmap")
+
+p2_1 <- plot_palette("witchy")
+p2_2 <- plot_palette("witchy_heatmap")
+
+p3_1 <- plot_palette("tealish")
+p3_2 <- plot_palette("tealish_heatmap")
+
+p4_1 <- plot_palette("lotus")
+p4_2 <- plot_palette ("lotus_heatmap")
+
+p5_1 <- plot_palette("chocolate")
+p5_2 <- plot_palette("chocolate_heatmap")
+
+(p1_1 | p1_2) / (p2_1 | p2_2) / (p3_1 | p3_2) / (p4_1 | p4_2) / (p5_1 | p5_2)
+
+
+
+```
+
+- 7 point styles (Unicode-based symbols)
+
+- 4 font themes: "fancy", "elegant", "simple", "standard"
+Bar plot
+
+- 2 background themes
+
+# Scatter plot
 
 ``` {r}
-
 ggplot(mtcars, aes(wt, mpg, color = factor(cyl))) +
   geom_raven_point(dot_type = "heart", size = 5) +
   scale_color_manual(values = get_raven_palette("vampire")) +
@@ -33,9 +90,10 @@ ggplot(mtcars, aes(wt, mpg, color = factor(cyl))) +
 
 ```
 
-Bar plot
+# Bar plot 
 
 ```{r}
+
 ggplot(mpg, aes(class, fill = class)) +
   geom_bar() +
   scale_fill_manual(values = get_raven_palette("vampire")) +
@@ -54,7 +112,8 @@ ggplot(mpg, aes(class, fill = class)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-Line plot 
+
+# Line plot 
 
 ``` {r}
 economics_small <- economics[1:100, ]
@@ -77,12 +136,12 @@ ggplot(economics_small, aes(date, unemploy)) +
   )
 ```
 
-Boxplot
+# Boxplot
 
 ```{r}
 ggplot(mpg, aes(class, hwy, fill = class)) +
   geom_boxplot() +
-  scale_fill_manual(values = get_raven_palette("witch")) +
+  scale_fill_manual(values = get_raven_palette("witchy")) +
   labs(
     title = "Boxplot",
     subtitle = "Highway MPG distribution",
@@ -92,13 +151,13 @@ ggplot(mpg, aes(class, hwy, fill = class)) +
   theme_raven(
     background_type = "transparent",
     font_theme = "elegant",
-    color_theme = "witch"
+    color_theme = "witchy"
   ) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   geom_boxplot(color = "#14070A")
 ```
 
-Dot plot (staked)
+# Dot plot (staked)
 
 ``` {r}
 ggplot(mpg, aes(x = class, y = hwy, fill = class)) +
@@ -107,7 +166,7 @@ ggplot(mpg, aes(x = class, y = hwy, fill = class)) +
     stackdir = "center",
     dotsize = 0.6
   ) +
-  scale_fill_manual(values = get_raven_palette("witch")) +
+  scale_fill_manual(values = get_raven_palette("witchy")) +
   labs(
     title = "Dot Plot",
     subtitle = "Highway MPG distribution by class",
@@ -117,12 +176,13 @@ ggplot(mpg, aes(x = class, y = hwy, fill = class)) +
   theme_raven(
     background_type = "vintage",
     font_theme = "simple",
-    color_theme = "gothic_witch"
+    color_theme = "witchy"
   ) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-Heatmap
+# Heatmap
+
 ``` {r}
 corr <- cor(mtcars)
 
@@ -130,7 +190,7 @@ corr_df <- as.data.frame(as.table(corr))
 
 ggplot(corr_df, aes(Var1, Var2, fill = Freq)) +
   geom_tile() +
-  scale_fill_gradientn(colors = get_raven_palette("vampire")) +
+  scale_fill_gradientn(colors = get_raven_palette("vampire_heatmap")) +
   labs(
     title = "Heatmap",
     subtitle = "Correlation matrix",
@@ -139,18 +199,19 @@ ggplot(corr_df, aes(Var1, Var2, fill = Freq)) +
   ) +
   theme_raven(
     background_type = "dark",
-    font_theme = "fancy",
-    color_theme = "vampire",
+    font_theme = "elegant",
+    color_theme = "vampire_heatmap",
     major_grid = FALSE
   ) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-Histogram
+# Histogram
+
 ``` {r}
 ggplot(diamonds, aes(carat, fill = cut)) +
   geom_histogram(bins = 30, alpha = 0.8) +
-  scale_fill_manual(values = get_raven_palette("witch")) +
+  scale_fill_manual(values = get_raven_palette("witchy")) +
   labs(
     title = "Histogram",
     subtitle = "Diamond sizes",
@@ -160,11 +221,11 @@ ggplot(diamonds, aes(carat, fill = cut)) +
   theme_raven(
     background_type = "dark",
     font_theme = "elegant",
-    color_theme = "witch"
+    color_theme = "witchy"
   )
 ```
 
-Faceted scatter
+# Faceted scatter
 
 ``` {r}
 ggplot(mpg, aes(displ, hwy, color = class)) +

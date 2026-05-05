@@ -1,3 +1,4 @@
+#' @export
 get_raven_symbol <- function(dot_type = "c") {
 
   symbols <- list(
@@ -22,7 +23,7 @@ get_raven_symbol <- function(dot_type = "c") {
   symbols[[dot_type]]
 }
 
-
+#' @export
 geom_raven_point <- function(dot_type = "standard", size = 4, ...) {
 
   if (dot_type == "standard") {

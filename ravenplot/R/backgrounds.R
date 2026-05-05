@@ -1,3 +1,4 @@
+#' @export
 get_raven_background <- function(background_type = "vintage") {
 
   backgrounds <- list(

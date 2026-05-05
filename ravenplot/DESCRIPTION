@@ -2,10 +2,9 @@ Package: ravenplot
 Title: Custom ggplot2 Themes 
 Version: 0.0.0.9000
 Authors@R: 
-    person("Diana", "Tereshchenko", , "diana.tereshchenko.d@gmail.com", role = c("aut", "cre"))
-Description: ggplot2 extension package with custtomizable themes, palettes, typography, and decorative plotting.
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Diana", "Tereshchenko", email = "diana.tereshchenko.d@gmail.com", role = c("aut", "cre"))
+Description: ggplot2 extension package with customizable themes, palettes, typography, and decorative plotting.
+License: MIT
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 Imports: 

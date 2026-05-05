@@ -1,25 +1,27 @@
+#' @export
+load_raven_fonts <- function() {
 
-  load_raven_fonts <- function() {
-
-    if (!"Cinzel" %in% sysfonts::font_families()) {
-      sysfonts::font_add_google("Cinzel", "Cinzel")
-    }
-
-    if (!"Cormorant Garamond" %in% sysfonts::font_families()) {
-      sysfonts::font_add_google("Cormorant Garamond", "Cormorant Garamond")
-    }
-
-    if (!"Cormorant SC" %in% sysfonts::font_families()) {
-      sysfonts::font_add_google("Cormorant SC", "Cormorant SC")
-    }
-
-    if (!"Sancreek" %in% sysfonts::font_families()) {
-      sysfonts::font_add_google("Sancreek", "Sancreek")
-    }
-
-    showtext::showtext_auto()
+  if (!"Cinzel" %in% sysfonts::font_families()) {
+    sysfonts::font_add_google("Cinzel", "Cinzel")
   }
 
+  if (!"Cormorant Garamond" %in% sysfonts::font_families()) {
+    sysfonts::font_add_google("Cormorant Garamond", "Cormorant Garamond")
+  }
+
+  if (!"Cormorant SC" %in% sysfonts::font_families()) {
+    sysfonts::font_add_google("Cormorant SC", "Cormorant SC")
+  }
+
+  if (!"Sancreek" %in% sysfonts::font_families()) {
+    sysfonts::font_add_google("Sancreek", "Sancreek")
+  }
+
+  showtext::showtext_auto()
+}
+
+
+#' @export
 get_raven_fonts <- function(font_theme = "fancy") {
 
   fonts <- list(
@@ -43,6 +45,13 @@ get_raven_fonts <- function(font_theme = "fancy") {
       subtitle = "Cormorant SC",
       axis = "Cormorant SC",
       labels = "Cormorant Garamond"
+    ),
+
+    standard = list(
+      title = "sans",
+      subtitle = "sans",
+      axis = "sans",
+      labels = "sans"
     )
   )
 

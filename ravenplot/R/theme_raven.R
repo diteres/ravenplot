@@ -1,3 +1,4 @@
+#' @export
 theme_raven <- function(
     dot_type = "standard",
     background_type = "vintage",
