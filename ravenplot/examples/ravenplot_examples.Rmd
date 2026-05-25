@@ -96,7 +96,7 @@ ggplot(mtcars, aes(wt, mpg, color = factor(cyl))) +
 
 ggplot(mpg, aes(class, fill = class)) +
   geom_bar() +
-  scale_fill_manual(values = get_raven_palette("vampire")) +
+  scale_fill_manual(values = get_raven_palette("tealish")) +
   labs(
     title = "Bar Plot",
     subtitle = "Vehicle classes",
@@ -121,7 +121,7 @@ economics_small <- economics[1:100, ]
 ggplot(economics_small, aes(date, unemploy)) +
   geom_line(
     linewidth = 1.5,
-    color = get_raven_palette("chocolate")[3]
+    color = get_raven_palette("witchy")[3]
   ) +
   labs(
     title = "Line Plot",
@@ -183,29 +183,32 @@ ggplot(mpg, aes(x = class, y = hwy, fill = class)) +
 
 # Heatmap
 
-``` {r}
+```{r}
 corr <- cor(mtcars)
 
 corr_df <- as.data.frame(as.table(corr))
 
 ggplot(corr_df, aes(Var1, Var2, fill = Freq)) +
   geom_tile() +
-  scale_fill_gradientn(colors = get_raven_palette("vampire_heatmap")) +
+  scale_fill_gradientn(
+    colours = get_raven_palette("witchy_heatmap")
+  ) +
   labs(
     title = "Heatmap",
-    subtitle = "Correlation matrix",
+    subtitle = "Motor trend correlations",
     x = "",
     y = ""
   ) +
   theme_raven(
     background_type = "dark",
     font_theme = "elegant",
-    color_theme = "vampire_heatmap",
+    color_theme = "witchy",
     major_grid = FALSE
   ) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
 ```
-
 # Histogram
 
 ``` {r}
